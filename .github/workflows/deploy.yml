@@ -24,9 +24,9 @@ jobs:
           destination_dir="/var/www/html/wordpress"  # Replace with the actual path
           pwd
           # Use SCP or SFTP to securely transfer your WordPress files to the VPS
-          scp -i -r ./* ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_HOST }}:/var/www/html/wordpress/
+          scp -i -r ./* ssh -i /home/ubuntu/.ssh/id_rsa ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_HOST }}:/var/www/html/wordpress/
           # Restart necessary services (e.g., Nginx, Apache, MySQL)
-          #ssh ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_HOST }} 'sudo systemctl restart nginx'
+          ssh ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_HOST }} 'sudo systemctl restart nginx'
 
     env:
       SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
