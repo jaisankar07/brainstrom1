@@ -14,11 +14,7 @@ jobs:
           pwd
           # Add commands to install any dependencies (e.g., Composer, npm)
       - name: Deploy to VPS
-        with:
-          host: ${{ secrets.VPS_HOST }}
-          username: ${{ secrets.VPS_USERNAME }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          script: |
+          run: |
             # Define the destination directory on your VPS where you want to deploy WordPress
             destination_dir="/var/www/html/wordpress"  # Replace with the actual path
             # Use SCP or SFTP to securely transfer your WordPress files to the VPS
