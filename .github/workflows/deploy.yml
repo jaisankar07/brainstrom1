@@ -26,3 +26,8 @@ jobs:
           sudo scp -i /home/ubuntu/.ssh/id_rsa -r ./* ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_HOST }}:/var/www/html/wordpress/
           # Restart necessary services (e.g., Nginx, Apache, MySQL)
           ssh ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_HOST }} 'sudo systemctl restart nginx'
+
+    env:
+      SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+      VPS_USERNAME: ${{ secrets.VPS_USERNAME }}
+      VPS_HOST: ${{ secrets.VPS_HOST }}
