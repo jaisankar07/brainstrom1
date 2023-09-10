@@ -1,23 +1,28 @@
 name: Deploy WordPress
+
 on:
   push:
     branches:
       - main
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+
       - name: Install dependencies (if needed)
         run: |
           pwd
           # Add commands to install any dependencies (e.g., Composer, npm)
+
       - name: Deploy to VPS
-          run: |
-            # Define the destination directory on your VPS where you want to deploy WordPress
-            destination_dir="/var/www/html/wordpress"  # Replace with the actual path
-            # Use SCP or SFTP to securely transfer your WordPress files to the VPS
-            scp -r ./* ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_HOST }}:/var/www/html/wordpress/
-            # Restart necessary services (e.g., Nginx, Apache, MySQL)
-            ssh ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_HOST }} 'sudo systemctl restart nginx'
+        run: |
+          # Define the destination directory on your VPS where you want to deploy WordPress
+          destination_dir="/var/www/html/wordpress"  # Replace with the actual path
+          # Use SCP or SFTP to securely transfer your WordPress files to the VPS
+          scp -r ./* ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_HOST }}:/var/www/html/wordpress/
+          # Restart necessary services (e.g., Nginx, Apache, MySQL)
+          ssh ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_HOST }} 'sudo systemctl restart nginx'
