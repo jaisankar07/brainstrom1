@@ -26,6 +26,11 @@ jobs:
           echo "SSH private key file does not exist."
           exit 1  # Exit with an error if the file does not exist
           fi
+      - name: Setup SSH Agent
+        uses: webfactory/ssh-agent@v0.5.1
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
       - name: Deploy using ssh
         uses: appleboy/ssh-action@master
         with:
