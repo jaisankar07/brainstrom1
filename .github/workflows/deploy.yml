@@ -19,6 +19,7 @@ jobs:
           # Example: npm install
       - name: Check SSH Private Key File
         run: |
+          pwd
           if [ -f ${{ secrets.SSH_PRIVATE_KEY }} ]; then
           echo "SSH private key file exists."
           else
